@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.2.11415.280 d18.0
+VisualStudioVersion = 18.2.11415.280
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples", "Samples\Samples.csproj", "{7152EE89-C402-46BB-B3D1-B7A0C8514A0D}"
 EndProject
@@ -10,6 +10,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LecturerManager.Common", "LecturerManager.Common\LecturerManager.Common.csproj", "{9FF5AC53-D269-4FEA-A5C4-EBB6B209C40E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LecturerManager.UIModels", "LecturerManager.UIModels\LecturerManager.UIModels.csproj", "{0298DAF9-DAC6-4C63-BB0F-7A67E4A9ACCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LecturerManager.Services", "LecturerManager.Services\LecturerManager.Services.csproj", "{7EC46C33-DF66-45F8-BEF3-A3AE80B9FC74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LecturerManagerConsoleApp", "LecturerManagerConsole\LecturerManagerConsoleApp.csproj", "{050602F4-0B20-41E3-9E7D-4A575DDD6FE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{0298DAF9-DAC6-4C63-BB0F-7A67E4A9ACCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0298DAF9-DAC6-4C63-BB0F-7A67E4A9ACCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0298DAF9-DAC6-4C63-BB0F-7A67E4A9ACCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EC46C33-DF66-45F8-BEF3-A3AE80B9FC74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EC46C33-DF66-45F8-BEF3-A3AE80B9FC74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EC46C33-DF66-45F8-BEF3-A3AE80B9FC74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EC46C33-DF66-45F8-BEF3-A3AE80B9FC74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{050602F4-0B20-41E3-9E7D-4A575DDD6FE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{050602F4-0B20-41E3-9E7D-4A575DDD6FE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{050602F4-0B20-41E3-9E7D-4A575DDD6FE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{050602F4-0B20-41E3-9E7D-4A575DDD6FE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
