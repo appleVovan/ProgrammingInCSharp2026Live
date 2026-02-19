@@ -68,6 +68,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\LecturerManager.Common\LecturerManager.Common.csproj" />
+	  <ProjectReference Include="..\LecturerManager.UIModels\LecturerManager.UIModels.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Pages\LecturerCreatePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

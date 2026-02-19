@@ -2,26 +2,45 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="KMA.ProgrammingInCSharp2026.LecturerManager.Pages.LecturerCreatePage"
-             Title="Lecturer Create Page">
-
-    <Grid RowDefinitions="*,*" ColumnDefinitions="*,*">        
-        <Border Grid.Row="0" Grid.Column="0" Stroke="Black" StrokeThickness="4" VerticalOptions="Fill"/>
-        <Border
-            Grid.Row="0"
-            Grid.Column="1"
-            Stroke="Blue"
-            StrokeThickness="4"
-            VerticalOptions="Fill">
-            <Button x:Name="But2" Text="Button 2" Clicked="Button_Clicked"></Button>
-        </Border>
-        <Border
-            Grid.Row="1"
-            Grid.Column="0"
-            Stroke="Brown"
-            StrokeThickness="4"
-            VerticalOptions="Fill">
-            <Button Text="Button 3" ></Button>
-        </Border>
-        <Border Grid.Row="1" Grid.Column="1" Stroke="Red" StrokeThickness="4" VerticalOptions="Fill"/>
-    </Grid>
+             Title="Create new Lecturer">
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="10,20"
+            Spacing="10">
+            <Label
+                Text="FirstName"></Label>
+            <Entry
+                x:Name="eFistName"
+                Placeholder="First Name"></Entry>
+            <Label
+                Text="LastName"></Label>
+            <Entry
+                x:Name="eLastName"
+                Placeholder="Last Name"></Entry>
+            <Label
+                Text="Postion"></Label>
+            <Picker
+                x:Name="pPosition"
+                Title="Select Lecturer's postion"
+                ItemDisplayBinding="{Binding DisplayName}"></Picker>
+            <Label
+                Text="Date of Birth"></Label>
+            <DatePicker
+                x:Name="dpDoB"
+                Date="{x:Null}"></DatePicker>
+            <Grid
+                ColumnDefinitions="*,*"
+                ColumnSpacing="10"
+                Padding="10">
+                <Button
+                    Grid.Column="0"
+                    Text="Create Lecturer"
+                    Clicked="CreateClicked"></Button>
+                <Button
+                    Grid.Column="1"
+                    Text="Back"
+                    Clicked="BackClicked"></Button>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
