@@ -8,8 +8,8 @@
     Title="LecturerManager">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate pages:LecturerCreatePage}"
-        Route="LecturerCreatePage" />
+        Title="Departments"
+        ContentTemplate="{DataTemplate pages:DepartmentsPage}"
+        Route="DepartmentsPage" />
 
 </Shell>
