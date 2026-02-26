@@ -12,13 +12,13 @@ namespace KMA.ProgrammingInChsarp2026.LecturerManager.DBModels
         public string Name { get; set; }    
         public Faculty Faculty { get; set; }
 
-        private DepartmentDBModel() 
-        { 
+        public DepartmentDBModel(string name, Faculty faculty): this(Guid.NewGuid(), name, faculty)
+        {
         }
 
-        public DepartmentDBModel(string name, Faculty faculty)
+        public DepartmentDBModel(Guid id, string name, Faculty faculty)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             Name = name;
             Faculty = faculty;
         }
