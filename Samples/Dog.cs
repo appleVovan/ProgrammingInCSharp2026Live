@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace KMA.ProgrammingInChsarp.Samples
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     enum DogType
     {
@@ -48,27 +50,37 @@ namespace KMA.ProgrammingInChsarp.Samples
         }
 
 
+#pragma warning disable CA1822 // Mark members as static
         private void Foo()
+#pragma warning restore CA1822 // Mark members as static
         {
 
         }
 
+#pragma warning disable CA1822 // Mark members as static
         internal void Bar()
+#pragma warning restore CA1822 // Mark members as static
         {
 
         }
 
+#pragma warning disable CA1822 // Mark members as static
         protected void Gas()
+#pragma warning restore CA1822 // Mark members as static
         {
 
         }
 
+#pragma warning disable CA1822 // Mark members as static
         public void Talk(string value)
+#pragma warning restore CA1822 // Mark members as static
         {
 
         }
 
+#pragma warning disable CA1822 // Mark members as static
         public void Talk(int times, string value = "woof", bool sit = false)
+#pragma warning restore CA1822 // Mark members as static
         {
 
         }

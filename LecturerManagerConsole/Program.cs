@@ -17,11 +17,12 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.ConsoleApp
         private static IStorageService _storageService;
         private static List<DepartmentUIModel> _departments;
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
         static void Main(string[] args)
         {
             Console.WriteLine("Hello and welcome to the Lecturer Manager Console App!");
             _storageService = new StorageService();
-            string? command = null;
+            string command = null;
             while (_appState != AppState.Exit)
             {
                 switch (_appState)
@@ -38,7 +39,7 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.ConsoleApp
                 UpdateState(command);
             }
         }
-        private static void UpdateState(string? command)
+        private static void UpdateState(string command)
         {
             switch (command)
             {
@@ -86,7 +87,7 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.ConsoleApp
             }
         }
 
-        private static void DepartmentDetailsState(string? departmentName)
+        private static void DepartmentDetailsState(string departmentName)
         {
             bool departmentExists = false;
             foreach (var department in _departments)

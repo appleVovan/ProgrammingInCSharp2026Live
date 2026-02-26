@@ -27,7 +27,9 @@ namespace KMA.ProgrammingInChsarp2026.Samples
         #region Variable Initialization Examples
         static void Sample2()
         {
+#pragma warning disable CS0219 // Variable is assigned but its value is never used
             циферка i, j, k;
+#pragma warning restore CS0219 // Variable is assigned but its value is never used
 
             i = j = k = 0;
         }
@@ -145,7 +147,11 @@ namespace KMA.ProgrammingInChsarp2026.Samples
 
         class Basenji : Dog
         {
+#pragma warning disable CS0114 // Member hides inherited member; missing override keyword
+#pragma warning disable CA1822 // Mark members as static
             public void Speak()
+#pragma warning restore CA1822 // Mark members as static
+#pragma warning restore CS0114 // Member hides inherited member; missing override keyword
             {
                 Console.WriteLine("Basenji is silent");
             }
@@ -192,7 +198,9 @@ namespace KMA.ProgrammingInChsarp2026.Samples
             return true;
         }
 
+#pragma warning disable CA1822 // Mark members as static
         void Sample13()
+#pragma warning restore CA1822 // Mark members as static
         {
             if (SaveToServer())
             {

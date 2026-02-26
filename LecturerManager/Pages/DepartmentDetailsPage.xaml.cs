@@ -6,7 +6,7 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Pages;
 [QueryProperty(nameof(CurrentDepartment), nameof(CurrentDepartment))]
 public partial class DepartmentDetailsPage : ContentPage
 {
-    private IStorageService _storage;
+    private readonly IStorageService _storage;
     private DepartmentUIModel _currentDepartment;
 
     public DepartmentUIModel CurrentDepartment

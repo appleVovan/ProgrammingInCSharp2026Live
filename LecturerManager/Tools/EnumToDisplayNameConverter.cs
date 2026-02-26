@@ -8,7 +8,7 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Tools
 {
     public class EnumToDisplayNameConverter : IValueConverter
     {
-        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is null)
                 return string.Empty;
@@ -19,7 +19,7 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Tools
             return castedEnum.GetDisplayName();
         }
 
-        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();
         }

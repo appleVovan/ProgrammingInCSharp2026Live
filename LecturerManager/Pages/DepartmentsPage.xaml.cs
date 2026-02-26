@@ -6,7 +6,7 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Pages;
 
 public partial class DepartmentsPage : ContentPage
 {
-	private IStorageService _storage;
+	private readonly IStorageService _storage;
     public ObservableCollection<DepartmentUIModel> Departments { get; set; }
     public DepartmentsPage(IStorageService storageService)
 	{
