@@ -29,9 +29,9 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Services
 
         static FakeStorage()
         {
-            var departmentOfMath = new DepartmentDBModel("Mathematics", Faculty.Informatics);
-            var departmentOfInformatics = new DepartmentDBModel("Informatics", Faculty.Informatics);
-            var departmentOfPhysics = new DepartmentDBModel("Physics", Faculty.Physics);
+            var departmentOfMath = new DepartmentDBModel("Mathematics", Faculty.FacultyOfInformatics);
+            var departmentOfInformatics = new DepartmentDBModel("Informatics", Faculty.FacultyOfInformatics);
+            var departmentOfPhysics = new DepartmentDBModel("Physics", Faculty.FacultyOfPhysics);
             _departments = new List<DepartmentDBModel> { departmentOfMath, departmentOfInformatics, departmentOfPhysics };
 
             _lecturers = new List<LecturerDBModel>

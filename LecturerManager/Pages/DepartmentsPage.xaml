@@ -3,13 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:KMA.ProgrammingInCSharp2026.LecturerManager.Pages"
              xmlns:models="clr-namespace:KMA.ProgrammingInChsarp2026.LecturerManager.UIModels;assembly=LecturerManager.UIModels"
+             xmlns:tools="clr-namespace:KMA.ProgrammingInCSharp2026.LecturerManager.Tools"
              x:Class="KMA.ProgrammingInCSharp2026.LecturerManager.Pages.DepartmentsPage"
              x:DataType="pages:DepartmentsPage"
-             Title="Departments">
+             Title="Departments">    
     <CollectionView
         ItemsSource="{Binding Departments}"
         Margin="10"
-        SelectionMode="Single">
+        SelectionMode="Single"
+        SelectionChanged="DepartmentSelected">
         <CollectionView.ItemTemplate>
             <DataTemplate
                 x:DataType="models:DepartmentUIModel">
@@ -19,7 +21,16 @@
                     Margin="0,10">
                     <VerticalStackLayout>
                         <Label
-                            Text="{Binding .}"></Label>
+                            Style="{StaticResource SubHeadline}">
+                            <MultiBinding
+                                StringFormat="{}{0} (Staff: {1})">
+                                <Binding Path="Name"></Binding>
+                                <Binding Path="StaffDesc"></Binding>
+                            </MultiBinding>
+                        </Label>
+                        <Label
+                            Text="{Binding Faculty, Converter={StaticResource EnumToDisplayName}}"
+                            HorizontalOptions="Center"/>
                     </VerticalStackLayout>                    
                 </Border>
             </DataTemplate>

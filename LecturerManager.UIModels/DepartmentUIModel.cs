@@ -9,6 +9,7 @@ namespace KMA.ProgrammingInChsarp2026.LecturerManager.UIModels
 {
     public class DepartmentUIModel
     {
+        private readonly IStorageService _storage;
         private DepartmentDBModel _dbModel;
         private string _name;
         private Faculty _faculty;
@@ -35,16 +36,23 @@ namespace KMA.ProgrammingInChsarp2026.LecturerManager.UIModels
 
         public int Staff
         {
-            get => Lecturers?.Count ?? 0;
+            get => Lecturers?.Count ?? -1;
         }
 
-        public DepartmentUIModel()
+        public string StaffDesc
+        {
+            get => Staff == -1 ? "Not Loaded" : Staff.ToString();
+        }
+
+        public DepartmentUIModel(IStorageService storage)
         {
             _lecturers = new List<LecturerUIModel>();
+            _storage = storage;
         }
 
-        public DepartmentUIModel(DepartmentDBModel dbModel) : this()
+        public DepartmentUIModel(IStorageService storage, DepartmentDBModel dbModel)
         {
+            _storage = storage;
             _dbModel = dbModel;
             _name = dbModel.Name;
             _faculty = dbModel.Faculty;
@@ -63,12 +71,12 @@ namespace KMA.ProgrammingInChsarp2026.LecturerManager.UIModels
             }
         }
 
-        public void LoadLecturers(StorageService storage)
+        public void LoadLecturers()
         {
-            if (Id == null || _lecturers.Count > 0)
+            if (Id == null || _lecturers != null)
                 return;
-
-            foreach (var lecturerDB in storage.GetLecturers(Id.Value))
+            _lecturers = new List<LecturerUIModel>();
+            foreach (var lecturerDB in _storage.GetLecturers(Id.Value))
             {
                 _lecturers.Add(new LecturerUIModel(lecturerDB));
             }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KMA.ProgrammingInCSharp2026.LecturerManager.Services
 {
-    public class StorageService
+    public class StorageService : IStorageService
     {
         private List<DepartmentDBModel> _departments;
         private List<LecturerDBModel> _lecturers;

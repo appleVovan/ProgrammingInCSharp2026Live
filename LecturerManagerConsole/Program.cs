@@ -14,7 +14,7 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.ConsoleApp
         }
 
         private static AppState _appState = AppState.Default;
-        private static StorageService _storageService;
+        private static IStorageService _storageService;
         private static List<DepartmentUIModel> _departments;
 
         static void Main(string[] args)
@@ -81,7 +81,7 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.ConsoleApp
             _departments = new List<DepartmentUIModel>();
             foreach (var department in _storageService.GetAllDepartments())
             {
-                var departmentUIModel = new DepartmentUIModel(department);
+                var departmentUIModel = new DepartmentUIModel(_storageService, department);
                 _departments.Add(departmentUIModel);
             }
         }
@@ -94,7 +94,7 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.ConsoleApp
                 if (department.Name == departmentName)
                 {
                     departmentExists = true;
-                    department.LoadLecturers(_storageService);
+                    department.LoadLecturers();
                     Console.WriteLine($"Lecturers in {department.Name}:");
                     foreach (var lecturer in department.Lecturers)
                     {
