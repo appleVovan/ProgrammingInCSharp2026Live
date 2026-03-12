@@ -17,13 +17,13 @@ namespace KMA.ProgrammingInChsarp2026.LecturerManager.DBModels
         //DateOfBirth is set only once during the creation of the object and cannot be changed later. 
         public DateTime DateOfBirth { get; }
 
-        private LecturerDBModel() 
+        public LecturerDBModel(Guid departmentId, string firstName, string lastName, LecturerPosition position, DateTime dateOfBirth):this(Guid.NewGuid(), departmentId, firstName, lastName, position, dateOfBirth)
         {
         }
 
-        public LecturerDBModel(Guid departmentId, string firstName, string lastName, LecturerPosition position, DateTime dateOfBirth)
+        public LecturerDBModel(Guid guid, Guid departmentId, string firstName, string lastName, LecturerPosition position, DateTime dateOfBirth)
         {
-            Id = Guid.NewGuid();
+            Id = guid;
             DepartmentId = departmentId;
             FirstName = firstName;
             LastName = lastName;

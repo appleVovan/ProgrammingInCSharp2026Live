@@ -24,6 +24,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LecturerManager.Storage", "LecturerManager.Storage\LecturerManager.Storage.csproj", "{F03BC001-E84E-4A12-BC93-FD74F6490422}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LecturerManager.Repositories", "LecturerManager.Repositories\LecturerManager.Repositories.csproj", "{2397733C-0CCE-47BE-9288-B32E29B805A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LecturerManager.DTOModels", "LecturerManager.DTOModels\LecturerManager.DTOModels.csproj", "{7A349272-23AD-473C-905B-E96D1A24D7AC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,14 @@ Global
 		{F03BC001-E84E-4A12-BC93-FD74F6490422}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F03BC001-E84E-4A12-BC93-FD74F6490422}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F03BC001-E84E-4A12-BC93-FD74F6490422}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2397733C-0CCE-47BE-9288-B32E29B805A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2397733C-0CCE-47BE-9288-B32E29B805A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2397733C-0CCE-47BE-9288-B32E29B805A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2397733C-0CCE-47BE-9288-B32E29B805A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A349272-23AD-473C-905B-E96D1A24D7AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A349272-23AD-473C-905B-E96D1A24D7AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A349272-23AD-473C-905B-E96D1A24D7AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A349272-23AD-473C-905B-E96D1A24D7AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

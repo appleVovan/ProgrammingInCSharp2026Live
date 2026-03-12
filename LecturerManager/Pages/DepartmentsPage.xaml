@@ -2,19 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:KMA.ProgrammingInCSharp2026.LecturerManager.Pages"
-             xmlns:models="clr-namespace:KMA.ProgrammingInChsarp2026.LecturerManager.UIModels;assembly=LecturerManager.UIModels"
+             xmlns:models="clr-namespace:KMA.ProgrammingInChsarp2026.LecturerManager.DTOModels.Departments;assembly=LecturerManager.DTOModels"
+             xmlns:vm="clr-namespace:KMA.ProgrammingInCSharp2026.LecturerManager.ViewModels"
              xmlns:tools="clr-namespace:KMA.ProgrammingInCSharp2026.LecturerManager.Tools"
              x:Class="KMA.ProgrammingInCSharp2026.LecturerManager.Pages.DepartmentsPage"
-             x:DataType="pages:DepartmentsPage"
+             x:DataType="vm:DepartmentsViewModel"
              Title="Departments">    
     <CollectionView
         ItemsSource="{Binding Departments}"
         Margin="10"
         SelectionMode="Single"
-        SelectionChanged="DepartmentSelected">
+        SelectedItem="{Binding SelectedDepartment}"
+        SelectionChangedCommand="{Binding DepartmentSelectedCommand}">
         <CollectionView.ItemTemplate>
             <DataTemplate
-                x:DataType="models:DepartmentUIModel">
+                x:DataType="models:DepartmentListDTO">
                 <Border
                     Stroke="Magenta"
                     Padding="10"
@@ -25,7 +27,7 @@
                             <MultiBinding
                                 StringFormat="{}{0} (Staff: {1})">
                                 <Binding Path="Name"></Binding>
-                                <Binding Path="StaffDesc"></Binding>
+                                <Binding Path="LecturersCount"></Binding>
                             </MultiBinding>
                         </Label>
                         <Label

@@ -3,12 +3,13 @@ using KMA.ProgrammingInChsarp2026.LecturerManager.DBModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
-namespace KMA.ProgrammingInCSharp2026.LecturerManager.Services
+namespace KMA.ProgrammingInCSharp2026.LecturerManager.Storage
 {
-    internal class InMemoryStorageContext : IStorageContext
+    public class InMemoryStorageContext : IStorageContext
     {
-        private record DepartmentRecord (Guid Id, string Name, Faculty Faculty);
+        private record DepartmentRecord (Guid Id, string Name, Faculty Faculty, string Email);
         private record LecturerRecord (Guid Id, Guid DepartmentId, string FirstName, string LastName, LecturerPosition Position, DateTime BirthDate);
 
         private static readonly List<DepartmentRecord> _departments = new List<DepartmentRecord>();
@@ -17,9 +18,9 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Services
         static InMemoryStorageContext()
         {
             #region MockStoragePopulation
-            var departmentOfMath = new DepartmentRecord(Guid.NewGuid(), "Mathematics", Faculty.FacultyOfInformatics);
-            var departmentOfInformatics = new DepartmentRecord(Guid.NewGuid(), "Informatics", Faculty.FacultyOfInformatics);
-            var departmentOfPhysics = new DepartmentRecord(Guid.NewGuid(), "Physics", Faculty.FacultyOfPhysics);
+            var departmentOfMath = new DepartmentRecord(Guid.NewGuid(), "Mathematics", Faculty.FacultyOfInformatics, "math_fin@ukma.edu.ua");
+            var departmentOfInformatics = new DepartmentRecord(Guid.NewGuid(), "Informatics", Faculty.FacultyOfInformatics, "fin@ukma.edu.ua");
+            var departmentOfPhysics = new DepartmentRecord(Guid.NewGuid(), "Physics", Faculty.FacultyOfPhysics, "physics_fprn@ukma.edu.ua");
             _departments.Add(departmentOfMath);
             _departments.Add(departmentOfInformatics);
             _departments.Add(departmentOfPhysics);
@@ -42,17 +43,26 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Services
 
         public IEnumerable<DepartmentDBModel> GetDepartments()
         {
-            var result = new List<DepartmentDBModel>();
             foreach (var department in _departments)
             {
-                result.Add(new DepartmentDBModel(department.Id, department.Name, department.Faculty));
+                yield return new DepartmentDBModel(department.Id, department.Name, department.Faculty, department.Email);
             }
-            return result;
+        }
+
+        public DepartmentDBModel GetDepartment(Guid departmentId)
+        {
+            var department = _departments.FirstOrDefault(department => department.Id == departmentId);
+            return department is null ? null : new DepartmentDBModel(department.Id, department.Name, department.Faculty, department.Email);
         }
 
         public IEnumerable<LecturerDBModel> GetLecturersByDepartment(Guid departmentId)
         {
-            throw new NotImplementedException();
+            return _lecturers.Where(lecturer => lecturer.DepartmentId == departmentId).Select(lecturer => new LecturerDBModel(lecturer.Id, lecturer.DepartmentId, lecturer.FirstName, lecturer.LastName, lecturer.Position, lecturer.BirthDate));
+        }
+
+        public int GetLecturersCountByDepartment(Guid departmentId)
+        {
+            return _lecturers.Count(lecturer => lecturer.DepartmentId == departmentId);
         }
     }
 }

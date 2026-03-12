@@ -6,6 +6,7 @@ using System.Text;
 
 namespace KMA.ProgrammingInCSharp2026.LecturerManager.Services
 {
+    [Obsolete("This class was created for testing and learning purposes. It is no longer needed and will be removed in the future.")]
     internal static class FakeStorage
     {
         private static readonly List<DepartmentDBModel> _departments;
@@ -29,9 +30,9 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Services
 
         static FakeStorage()
         {
-            var departmentOfMath = new DepartmentDBModel("Mathematics", Faculty.FacultyOfInformatics);
-            var departmentOfInformatics = new DepartmentDBModel("Informatics", Faculty.FacultyOfInformatics);
-            var departmentOfPhysics = new DepartmentDBModel("Physics", Faculty.FacultyOfPhysics);
+            var departmentOfMath = new DepartmentDBModel("Mathematics", Faculty.FacultyOfInformatics,"");
+            var departmentOfInformatics = new DepartmentDBModel("Informatics", Faculty.FacultyOfInformatics, "");
+            var departmentOfPhysics = new DepartmentDBModel("Physics", Faculty.FacultyOfPhysics, "");
             _departments = new List<DepartmentDBModel> { departmentOfMath, departmentOfInformatics, departmentOfPhysics };
 
             _lecturers = new List<LecturerDBModel>

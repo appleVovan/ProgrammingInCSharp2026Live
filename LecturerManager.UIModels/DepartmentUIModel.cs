@@ -7,6 +7,7 @@ using System.Text;
 
 namespace KMA.ProgrammingInChsarp2026.LecturerManager.UIModels
 {
+    [Obsolete("This class was created for testing and learning purposes. It is no longer needed and will be removed in the future.")]
     public class DepartmentUIModel
     {
         private readonly IStorageService _storage;
@@ -67,7 +68,7 @@ namespace KMA.ProgrammingInChsarp2026.LecturerManager.UIModels
             }
             else
             {
-                _dbModel = new DepartmentDBModel(_name, _faculty);
+                _dbModel = new DepartmentDBModel(_name, _faculty,"");
             }
         }
 

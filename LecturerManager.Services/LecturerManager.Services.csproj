@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LecturerManager.DBModels\LecturerManager.DBModels.csproj" />
+    <ProjectReference Include="..\LecturerManager.DTOModels\LecturerManager.DTOModels.csproj" />
+    <ProjectReference Include="..\LecturerManager.Repositories\LecturerManager.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

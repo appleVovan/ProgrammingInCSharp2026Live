@@ -3,12 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace KMA.ProgrammingInCSharp2026.LecturerManager.Storage
+namespace KMA.ProgrammingInCSharp2026.LecturerManager.Repositories
 {
-    public interface IStorageContext
+    public interface ILecturerRepository
     {
-        IEnumerable<DepartmentDBModel> GetDepartments();
-        DepartmentDBModel GetDepartment(Guid departmentId);
         IEnumerable<LecturerDBModel> GetLecturersByDepartment(Guid departmentId);
         int GetLecturersCountByDepartment(Guid departmentId);
     }
