@@ -1,5 +1,3 @@
-using KMA.ProgrammingInChsarp2026.LecturerManager.UIModels;
-using KMA.ProgrammingInCSharp2026.LecturerManager.Services;
 using KMA.ProgrammingInCSharp2026.LecturerManager.ViewModels;
 using System.Collections.ObjectModel;
 

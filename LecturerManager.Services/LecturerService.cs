@@ -20,5 +20,11 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Services
                 yield return new LecturerListDTO(lecturer.Id, lecturer.FirstName, lecturer.LastName, lecturer.Position);
             }
         }
+
+        public LecturerDetailsDTO GetLecturer(Guid lecturerId)
+        {
+            var lecturer = _lecturerRepository.GetLecturer(lecturerId);
+            return lecturer is null ? null : new LecturerDetailsDTO(lecturer.Id, lecturer.FirstName, lecturer.LastName, lecturer.Position, lecturer.DateOfBirth);
+        }
     }
 }

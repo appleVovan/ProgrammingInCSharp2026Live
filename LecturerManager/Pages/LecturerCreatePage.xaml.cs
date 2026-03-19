@@ -1,6 +1,5 @@
 using KMA.ProgrammingInChsarp2026.LecturerManager.Common;
 using KMA.ProgrammingInChsarp2026.LecturerManager.Common.Enums;
-using KMA.ProgrammingInChsarp2026.LecturerManager.UIModels;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
@@ -33,18 +32,19 @@ public partial class LecturerCreatePage : ContentPage
         }
         if (dpDoB.Date == null)
         {
+            
             DisplayAlert("Incomplete data!", "Date of birth must be selected", "OK");
             return;
         }
-        var lecturer = new LecturerUIModel(Guid.Empty)
-        {
-            FirstName = eFistName.Text,
-            LastName = eLastName.Text,
-            Position = ((EnumWithName<LecturerPosition>)pPosition.SelectedItem).Value,
-            DateOfBirth = dpDoB.Date.Value
-        };
-        lecturer.SaveChangesToDBModel();
-        DisplayAlert("Lecturer Created!", $"Lecturer {lecturer.FirstName} {lecturer.LastName} was created successfully, his age is {lecturer.Age}", "OK");
+        //var lecturer = new LecturerUIModel(Guid.Empty)
+        //{
+        //    FirstName = eFistName.Text,
+        //    LastName = eLastName.Text,
+        //    Position = ((EnumWithName<LecturerPosition>)pPosition.SelectedItem).Value,
+        //    DateOfBirth = dpDoB.Date.Value
+        //};
+        //lecturer.SaveChangesToDBModel();
+        //DisplayAlert("Lecturer Created!", $"Lecturer {lecturer.FirstName} {lecturer.LastName} was created successfully, his age is {lecturer.Age}", "OK");
     }
 
     private void BackClicked(object sender, EventArgs e)

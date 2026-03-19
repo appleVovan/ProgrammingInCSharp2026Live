@@ -1,5 +1,7 @@
-﻿using KMA.ProgrammingInChsarp2026.LecturerManager.UIModels;
+﻿using KMA.ProgrammingInChsarp2026.LecturerManager.DTOModels.Departments;
+using KMA.ProgrammingInCSharp2026.LecturerManager.Repositories;
 using KMA.ProgrammingInCSharp2026.LecturerManager.Services;
+using KMA.ProgrammingInCSharp2026.LecturerManager.Storage;
 
 namespace KMA.ProgrammingInCSharp2026.LecturerManager.ConsoleApp
 {
@@ -14,14 +16,20 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.ConsoleApp
         }
 
         private static AppState _appState = AppState.Default;
-        private static IStorageService _storageService;
-        private static List<DepartmentUIModel> _departments;
+        private static IDepartmentService _departmentService;
+        private static ILecturerService _lecturerService;
+        private static List<DepartmentListDTO> _departments;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
         static void Main(string[] args)
         {
             Console.WriteLine("Hello and welcome to the Lecturer Manager Console App!");
-            _storageService = new StorageService();
+            var storageContext = new InMemoryStorageContext();
+            var departmentRepo = new DepartmentRepository(storageContext);
+            var lecturerRepo = new LecturerRepository(storageContext);
+
+            _departmentService = new DepartmentService(departmentRepo, lecturerRepo);
+            _lecturerService = new LecturerService(lecturerRepo);
             string command = null;
             while (_appState != AppState.Exit)
             {
@@ -79,11 +87,10 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.ConsoleApp
         {
             if (_departments != null)
                 return;
-            _departments = new List<DepartmentUIModel>();
-            foreach (var department in _storageService.GetAllDepartments())
+            _departments = new List<DepartmentListDTO>();
+            foreach (var department in _departmentService.GetAllDepartments())
             {
-                var departmentUIModel = new DepartmentUIModel(_storageService, department);
-                _departments.Add(departmentUIModel);
+                _departments.Add(department);
             }
         }
 
@@ -95,9 +102,8 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.ConsoleApp
                 if (department.Name == departmentName)
                 {
                     departmentExists = true;
-                    department.LoadLecturers();
                     Console.WriteLine($"Lecturers in {department.Name}:");
-                    foreach (var lecturer in department.Lecturers)
+                    foreach (var lecturer in _lecturerService.GetLecturersByDepartment(department.Id))
                     {
                         Console.WriteLine(lecturer);
                     }

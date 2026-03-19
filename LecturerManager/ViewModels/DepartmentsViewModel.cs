@@ -1,5 +1,4 @@
 ﻿using KMA.ProgrammingInChsarp2026.LecturerManager.DTOModels.Departments;
-using KMA.ProgrammingInChsarp2026.LecturerManager.UIModels;
 using KMA.ProgrammingInCSharp2026.LecturerManager.Pages;
 using KMA.ProgrammingInCSharp2026.LecturerManager.Services;
 using System;

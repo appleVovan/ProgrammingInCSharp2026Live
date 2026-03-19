@@ -60,6 +60,12 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Storage
             return _lecturers.Where(lecturer => lecturer.DepartmentId == departmentId).Select(lecturer => new LecturerDBModel(lecturer.Id, lecturer.DepartmentId, lecturer.FirstName, lecturer.LastName, lecturer.Position, lecturer.BirthDate));
         }
 
+        public LecturerDBModel GetLecturer(Guid lecturerId)
+        {
+            var lecturer = _lecturers.FirstOrDefault(lecturer => lecturer.Id == lecturerId);
+            return lecturer is null ? null : new LecturerDBModel(lecturer.Id, lecturer.DepartmentId, lecturer.FirstName, lecturer.LastName, lecturer.Position, lecturer.BirthDate);
+        }
+
         public int GetLecturersCountByDepartment(Guid departmentId)
         {
             return _lecturers.Count(lecturer => lecturer.DepartmentId == departmentId);

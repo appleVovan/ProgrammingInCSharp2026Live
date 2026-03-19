@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LecturerManager.Services\LecturerManager.Services.csproj" />
-    <ProjectReference Include="..\LecturerManager.UIModels\LecturerManager.UIModels.csproj" />
   </ItemGroup>
 
 </Project>

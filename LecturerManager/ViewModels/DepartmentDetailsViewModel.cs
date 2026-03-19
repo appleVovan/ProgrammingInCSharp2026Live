@@ -1,14 +1,8 @@
 ﻿using KMA.ProgrammingInChsarp2026.LecturerManager.DTOModels.Departments;
 using KMA.ProgrammingInChsarp2026.LecturerManager.DTOModels.Lecturers;
-using KMA.ProgrammingInChsarp2026.LecturerManager.UIModels;
 using KMA.ProgrammingInCSharp2026.LecturerManager.Pages;
 using KMA.ProgrammingInCSharp2026.LecturerManager.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 

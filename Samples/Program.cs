@@ -10,7 +10,7 @@ namespace KMA.ProgrammingInChsarp2026.Samples
     {
         static void Main(string[] args)
         {
-            Sample14();
+            Sample16();
         }
 
         #region Initialization in C# Examples
@@ -104,8 +104,8 @@ namespace KMA.ProgrammingInChsarp2026.Samples
             int val1 = 5;
             int val2 = 5;
 
-            Console.WriteLine(val1 == val2); 
-            Console.WriteLine(val1.Equals(val2)); 
+            Console.WriteLine(val1 == val2);
+            Console.WriteLine(val1.Equals(val2));
 
         }
         #endregion
@@ -205,7 +205,7 @@ namespace KMA.ProgrammingInChsarp2026.Samples
             if (SaveToServer())
             {
             }
-            else 
+            else
                 if (SaveLocalCopy())
                 {
                 }
@@ -226,6 +226,42 @@ namespace KMA.ProgrammingInChsarp2026.Samples
 
 
 
+        }
+        #endregion
+
+        #region Threading
+
+        static void Sample15()
+        {
+            CancellationTokenSource tokenSource = new CancellationTokenSource();
+            var backgroundWorker = new MyBackgroudWorker("Test", 5, 3.14, tokenSource.Token);
+            Thread myParallelOperations = new Thread(backgroundWorker.Process);
+
+            myParallelOperations.Start();
+
+            //Perform some operations in the main thread
+
+            tokenSource.Cancel();
+            myParallelOperations.Join(5000);
+
+            //Process _outputParams
+            Console.WriteLine(backgroundWorker.OutputParams.Item1);
+        }
+        #endregion
+
+        #region Async
+
+        static void Sample16()
+        {
+            Console.WriteLine($"1 Step. Thread: {Thread.CurrentThread.ManagedThreadId}");
+            var asyncSample = new AsyncSample();
+            Console.WriteLine($"2 Step. Thread: {Thread.CurrentThread.ManagedThreadId}");
+            asyncSample.RunAsync();
+            Console.WriteLine($"11 Step. Thread: {Thread.CurrentThread.ManagedThreadId}");
+            Console.WriteLine($"12 Step. Thread: {Thread.CurrentThread.ManagedThreadId}");
+            Console.WriteLine($"13 Step. Thread: {Thread.CurrentThread.ManagedThreadId}");
+            Thread.Sleep(7000);
+            Console.WriteLine($"14 Step. Thread: {Thread.CurrentThread.ManagedThreadId}");
         }
         #endregion
     }

@@ -70,9 +70,8 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\LecturerManager.Common\LecturerManager.Common.csproj" />
-	  <ProjectReference Include="..\LecturerManager.Repositories\LecturerManager.Repositories.csproj" />
+	  <ProjectReference Include="..\LecturerManager.Services\LecturerManager.Services.csproj" />
 	  <ProjectReference Include="..\LecturerManager.Storage\LecturerManager.Storage.csproj" />
-	  <ProjectReference Include="..\LecturerManager.UIModels\LecturerManager.UIModels.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
