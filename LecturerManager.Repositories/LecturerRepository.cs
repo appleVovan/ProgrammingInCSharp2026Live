@@ -13,19 +13,19 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Repositories
         {
             _storageContext = storageContext;
         }
-        public IEnumerable<LecturerDBModel> GetLecturersByDepartment(Guid departmentId)
+        public Task<IEnumerable<LecturerDBModel>> GetLecturersByDepartmentAsync(Guid departmentId)
         {
-            return _storageContext.GetLecturersByDepartment(departmentId);
+            return _storageContext.GetLecturersByDepartmentAsync(departmentId);
         }
 
-        public LecturerDBModel GetLecturer(Guid lecturerId)
+        public Task<LecturerDBModel> GetLecturerAsync(Guid lecturerId)
         {
-            return _storageContext.GetLecturer(lecturerId);
+            return _storageContext.GetLecturerAsync(lecturerId);
         }
 
-        public int GetLecturersCountByDepartment(Guid departmentId)
+        public Task<int> GetLecturersCountByDepartmentAsync(Guid departmentId)
         {
-            return _storageContext.GetLecturersCountByDepartment(departmentId);
+            return _storageContext.GetLecturersCountByDepartmentAsync(departmentId);
         }
     }
 }

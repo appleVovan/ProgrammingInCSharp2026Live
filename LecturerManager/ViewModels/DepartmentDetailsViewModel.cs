@@ -8,10 +8,16 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace KMA.ProgrammingInCSharp2026.LecturerManager.ViewModels
 {
-    public partial class DepartmentDetailsViewModel : ObservableObject, IQueryAttributable
+    public partial class DepartmentDetailsViewModel : BaseViewModel, IQueryAttributable
     {
         private readonly IDepartmentService _departmentService;
         private readonly ILecturerService _lecturerService;
+
+        private Task<DepartmentDetailsDTO> _departmentTask;
+        private Task<IEnumerable<LecturerListDTO>> _lecturersTask;
+
+        private Guid _departmentId;
+
         [ObservableProperty]
         private DepartmentDetailsDTO _currentDepartment;
         [ObservableProperty]
@@ -27,16 +33,26 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.ViewModels
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            var departmentId = (Guid)query["DepartmentId"];
-            CurrentDepartment = _departmentService.GetDepartment(departmentId);
-            Lecturers = new ObservableCollection<LecturerListDTO>(_lecturerService.GetLecturersByDepartment(departmentId));
+            _departmentId = (Guid)query["DepartmentId"];
+            _departmentTask = _departmentService.GetDepartmentAsync(_departmentId);
+            _lecturersTask = _lecturerService.GetLecturersByDepartmentAsync(_departmentId);
             OnPropertyChanged(nameof(Lecturers));
         }
 
-        [RelayCommand]
-        private void LoadLecturer(Guid lecturerId)
+        internal async Task RefreshData()
         {
-            Shell.Current.GoToAsync($"{nameof(LecturerDetailsPage)}", new Dictionary<string, object> { { "LecturerId", lecturerId } });
+            IsBusy = true;
+            CurrentDepartment = await _departmentTask;
+            Lecturers = new ObservableCollection<LecturerListDTO>(await _lecturersTask);
+            IsBusy = false;
+        }
+
+        [RelayCommand]
+        private async Task LoadLecturer(Guid lecturerId)
+        {
+            IsBusy = true;
+            await Shell.Current.GoToAsync($"{nameof(LecturerDetailsPage)}", new Dictionary<string, object> { { "LecturerId", lecturerId } });
+            IsBusy = false;
         }
 
     }

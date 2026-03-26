@@ -256,12 +256,17 @@ namespace KMA.ProgrammingInChsarp2026.Samples
             Console.WriteLine($"1 Step. Thread: {Thread.CurrentThread.ManagedThreadId}");
             var asyncSample = new AsyncSample();
             Console.WriteLine($"2 Step. Thread: {Thread.CurrentThread.ManagedThreadId}");
-            asyncSample.RunAsync();
-            Console.WriteLine($"11 Step. Thread: {Thread.CurrentThread.ManagedThreadId}");
-            Console.WriteLine($"12 Step. Thread: {Thread.CurrentThread.ManagedThreadId}");
-            Console.WriteLine($"13 Step. Thread: {Thread.CurrentThread.ManagedThreadId}");
-            Thread.Sleep(7000);
+            var task = asyncSample.RunAsync();
             Console.WriteLine($"14 Step. Thread: {Thread.CurrentThread.ManagedThreadId}");
+            try
+            {
+                task.Wait();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ex.Message}.Thread: {Thread.CurrentThread.ManagedThreadId}");
+            }
+            Console.WriteLine($"15 Step. Thread: {Thread.CurrentThread.ManagedThreadId}");
         }
         #endregion
     }

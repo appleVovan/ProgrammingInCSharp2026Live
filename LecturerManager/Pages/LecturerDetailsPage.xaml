@@ -6,36 +6,49 @@
              xmlns:vm="clr-namespace:KMA.ProgrammingInCSharp2026.LecturerManager.ViewModels"
              x:Class="KMA.ProgrammingInCSharp2026.LecturerManager.Pages.LecturerDetailsPage"
              x:DataType="vm:LecturerDetailsViewModel"
-             Title="Lecturer Details">
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="10,20"
-            Spacing="10">
-            <Label
-                Text="FirstName"></Label>
-            <Label
-                Text="{Binding FirstName}"
-                Margin="10,0"></Label>
-            <Label
-                Text="LastName"></Label>
-            <Label
-                Text="{Binding LastName}"
-                Margin="10,0"></Label>
-            <Label
-                Text="Postion"></Label>
-            <Label
-                Text="{Binding Position, Converter={StaticResource EnumToDisplayName}}"
-                Margin="10,0"></Label>
-            <Label
-                Text="Date of Birth"></Label>
-            <Label
-                Text="{Binding DateOfBirth, StringFormat='{0:MMMM dd, yyyy}'}"
-                Margin="10,0"></Label>
-            <Label
-                Text="Age"></Label>
-            <Label
-                Text="{Binding Age}"
-                Margin="10,0"></Label>
-        </VerticalStackLayout>
-    </ScrollView>
+             Title="Lecturer Details" IsEnabled="{Binding IsNotBusy}">
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout
+                Padding="10,20"
+                Spacing="10">
+                <Label
+                    Text="FirstName"></Label>
+                <Label
+                    Text="{Binding FirstName}"
+                    Margin="10,0"></Label>
+                <Label
+                    Text="LastName"></Label>
+                <Label
+                    Text="{Binding LastName}"
+                    Margin="10,0"></Label>
+                <Label
+                    Text="Postion"></Label>
+                <Label
+                    Text="{Binding Position, Converter={StaticResource EnumToDisplayName}}"
+                    Margin="10,0"></Label>
+                <Label
+                    Text="Date of Birth"></Label>
+                <Label
+                    Text="{Binding DateOfBirth, StringFormat='{0:MMMM dd, yyyy}'}"
+                    Margin="10,0"></Label>
+                <Label
+                    Text="Age"></Label>
+                <Label
+                    Text="{Binding Age}"
+                    Margin="10,0"></Label>
+            </VerticalStackLayout>
+        </ScrollView>
+        <BoxView
+                IsVisible="{Binding IsBusy}"
+                BackgroundColor="Gray"
+                Opacity="0.2"
+                InputTransparent="False"/>
+        <ActivityIndicator
+                Color="Magenta"
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"/>
+    </Grid>
 </ContentPage>

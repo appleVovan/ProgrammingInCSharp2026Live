@@ -8,12 +8,14 @@ using System.Text;
 
 namespace KMA.ProgrammingInCSharp2026.LecturerManager.ViewModels
 {
-    public partial class LecturerDetailsViewModel : ObservableObject, IQueryAttributable
+    public partial class LecturerDetailsViewModel : BaseViewModel, IQueryAttributable
     {
         private readonly ILecturerService _lecturerService;
 
         private LecturerDetailsDTO _currentLecturer;
         private int _age;
+
+        private Guid _lecturerId;
 
         public string FirstName => _currentLecturer?.FirstName;
         public string LastName => _currentLecturer?.LastName;
@@ -29,14 +31,19 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.ViewModels
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            var lecturerId = (Guid)query["LecturerId"];
-            _currentLecturer = _lecturerService.GetLecturer(lecturerId);
+            _lecturerId = (Guid)query["LecturerId"];
+        }
+        internal async Task RefreshData()
+        {
+            IsBusy = true;
+            _currentLecturer = await _lecturerService.GetLecturerAsync(_lecturerId);
             CalculateAge();
             OnPropertyChanged(nameof(FirstName));
             OnPropertyChanged(nameof(LastName));
             OnPropertyChanged(nameof(Position));
             OnPropertyChanged(nameof(DateOfBirth));
             OnPropertyChanged(nameof(Age));
+            IsBusy = false;
         }
 
         private void CalculateAge()

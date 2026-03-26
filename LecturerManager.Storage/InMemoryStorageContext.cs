@@ -41,34 +41,51 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Storage
 
         }
 
-        public IEnumerable<DepartmentDBModel> GetDepartments()
+        public async IAsyncEnumerable<DepartmentDBModel> GetDepartmentsAsync()
         {
             foreach (var department in _departments)
             {
+                await Task.Delay(1000);
                 yield return new DepartmentDBModel(department.Id, department.Name, department.Faculty, department.Email);
             }
         }
 
-        public DepartmentDBModel GetDepartment(Guid departmentId)
+        public Task<DepartmentDBModel> GetDepartmentAsync(Guid departmentId)
         {
-            var department = _departments.FirstOrDefault(department => department.Id == departmentId);
-            return department is null ? null : new DepartmentDBModel(department.Id, department.Name, department.Faculty, department.Email);
+            return Task.Run(() =>
+            {
+                Thread.Sleep(1000);
+                var department = _departments.FirstOrDefault(department => department.Id == departmentId);
+                return department is null ? null : new DepartmentDBModel(department.Id, department.Name, department.Faculty, department.Email);
+            });
         }
 
-        public IEnumerable<LecturerDBModel> GetLecturersByDepartment(Guid departmentId)
+        public Task<IEnumerable<LecturerDBModel>> GetLecturersByDepartmentAsync(Guid departmentId)
         {
-            return _lecturers.Where(lecturer => lecturer.DepartmentId == departmentId).Select(lecturer => new LecturerDBModel(lecturer.Id, lecturer.DepartmentId, lecturer.FirstName, lecturer.LastName, lecturer.Position, lecturer.BirthDate));
+            return Task.Run(() =>
+            {
+                Thread.Sleep(1000);
+                return _lecturers.Where(lecturer => lecturer.DepartmentId == departmentId).Select(lecturer => new LecturerDBModel(lecturer.Id, lecturer.DepartmentId, lecturer.FirstName, lecturer.LastName, lecturer.Position, lecturer.BirthDate));
+            });
         }
 
-        public LecturerDBModel GetLecturer(Guid lecturerId)
+        public Task<LecturerDBModel> GetLecturerAsync(Guid lecturerId)
         {
-            var lecturer = _lecturers.FirstOrDefault(lecturer => lecturer.Id == lecturerId);
-            return lecturer is null ? null : new LecturerDBModel(lecturer.Id, lecturer.DepartmentId, lecturer.FirstName, lecturer.LastName, lecturer.Position, lecturer.BirthDate);
+            return Task.Run(() =>
+            {
+                Thread.Sleep(1000);
+                var lecturer = _lecturers.FirstOrDefault(lecturer => lecturer.Id == lecturerId);
+                return lecturer is null ? null : new LecturerDBModel(lecturer.Id, lecturer.DepartmentId, lecturer.FirstName, lecturer.LastName, lecturer.Position, lecturer.BirthDate);
+            });
         }
 
-        public int GetLecturersCountByDepartment(Guid departmentId)
+        public Task<int> GetLecturersCountByDepartmentAsync(Guid departmentId)
         {
-            return _lecturers.Count(lecturer => lecturer.DepartmentId == departmentId);
+            return Task.Run(() =>
+            {
+                Thread.Sleep(500);
+                return _lecturers.Count(lecturer => lecturer.DepartmentId == departmentId);
+            });
         }
     }
 }

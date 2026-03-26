@@ -7,35 +7,48 @@
              xmlns:tools="clr-namespace:KMA.ProgrammingInCSharp2026.LecturerManager.Tools"
              x:Class="KMA.ProgrammingInCSharp2026.LecturerManager.Pages.DepartmentsPage"
              x:DataType="vm:DepartmentsViewModel"
-             Title="Departments">    
-    <CollectionView
-        ItemsSource="{Binding Departments}"
-        Margin="10"
-        SelectionMode="Single"
-        SelectedItem="{Binding SelectedDepartment}"
-        SelectionChangedCommand="{Binding DepartmentSelectedCommand}">
-        <CollectionView.ItemTemplate>
-            <DataTemplate
-                x:DataType="models:DepartmentListDTO">
-                <Border
-                    Stroke="Magenta"
-                    Padding="10"
-                    Margin="0,10">
-                    <VerticalStackLayout>
-                        <Label
-                            Style="{StaticResource SubHeadline}">
-                            <MultiBinding
-                                StringFormat="{}{0} (Staff: {1})">
-                                <Binding Path="Name"></Binding>
-                                <Binding Path="LecturersCount"></Binding>
-                            </MultiBinding>
-                        </Label>
-                        <Label
-                            Text="{Binding Faculty, Converter={StaticResource EnumToDisplayName}}"
-                            HorizontalOptions="Center"/>
-                    </VerticalStackLayout>                    
-                </Border>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+             Title="Departments" IsEnabled="{Binding IsNotBusy}">
+    <Grid>
+        <CollectionView
+            ItemsSource="{Binding Departments}"
+            Margin="10"
+            SelectionMode="Single"
+            SelectedItem="{Binding SelectedDepartment}"
+            SelectionChangedCommand="{Binding LoadDepartmentCommand}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate
+                    x:DataType="models:DepartmentListDTO">
+                    <Border
+                        Stroke="Magenta"
+                        Padding="10"
+                        Margin="0,10">
+                        <VerticalStackLayout>
+                            <Label
+                                Style="{StaticResource SubHeadline}">
+                                <MultiBinding
+                                    StringFormat="{}{0} (Staff: {1})">
+                                    <Binding Path="Name"></Binding>
+                                    <Binding Path="LecturersCount"></Binding>
+                                </MultiBinding>
+                            </Label>
+                            <Label
+                                Text="{Binding Faculty, Converter={StaticResource EnumToDisplayName}}"
+                                HorizontalOptions="Center"/>
+                        </VerticalStackLayout>                    
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <BoxView
+            IsVisible="{Binding IsBusy}"
+            BackgroundColor="Gray"
+            Opacity="0.2"
+            InputTransparent="False"/>
+        <ActivityIndicator
+            Color="Magenta"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"/>
+    </Grid>
 </ContentPage>

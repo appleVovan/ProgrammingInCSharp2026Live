@@ -13,17 +13,14 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Services
         {
             _lecturerRepository = lecturerRepository;
         }
-        public IEnumerable<LecturerListDTO> GetLecturersByDepartment(Guid departmentId)
+        public async Task<IEnumerable<LecturerListDTO>> GetLecturersByDepartmentAsync(Guid departmentId)
         {
-            foreach (var lecturer in _lecturerRepository.GetLecturersByDepartment(departmentId))
-            {
-                yield return new LecturerListDTO(lecturer.Id, lecturer.FirstName, lecturer.LastName, lecturer.Position);
-            }
+            return (await _lecturerRepository.GetLecturersByDepartmentAsync(departmentId)).Select(lecturer => new LecturerListDTO(lecturer.Id, lecturer.FirstName, lecturer.LastName, lecturer.Position));
         }
 
-        public LecturerDetailsDTO GetLecturer(Guid lecturerId)
+        public async Task<LecturerDetailsDTO> GetLecturerAsync(Guid lecturerId)
         {
-            var lecturer = _lecturerRepository.GetLecturer(lecturerId);
+            var lecturer = await _lecturerRepository.GetLecturerAsync(lecturerId);
             return lecturer is null ? null : new LecturerDetailsDTO(lecturer.Id, lecturer.FirstName, lecturer.LastName, lecturer.Position, lecturer.DateOfBirth);
         }
     }

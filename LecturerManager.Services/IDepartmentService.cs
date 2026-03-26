@@ -8,7 +8,7 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Services
 {
     public interface IDepartmentService
     {
-        IEnumerable<DepartmentListDTO> GetAllDepartments();
-        DepartmentDetailsDTO GetDepartment(Guid departmentId);
+        IAsyncEnumerable<DepartmentListDTO> GetAllDepartmentsAsync();
+        Task<DepartmentDetailsDTO> GetDepartmentAsync(Guid departmentId);
     }
 }

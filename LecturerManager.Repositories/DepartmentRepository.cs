@@ -13,14 +13,14 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Repositories
         {
             _storageContext = storageContext;
         }
-        public IEnumerable<DepartmentDBModel> GetDepartments()
+        public IAsyncEnumerable<DepartmentDBModel> GetDepartmentsAsync()
         {
-            return _storageContext.GetDepartments();
+            return _storageContext.GetDepartmentsAsync();
         }
 
-        public DepartmentDBModel GetDepartment(Guid departmentId)
+        public Task<DepartmentDBModel> GetDepartmentAsync(Guid departmentId)
         {
-            return _storageContext.GetDepartment(departmentId);
+            return _storageContext.GetDepartmentAsync(departmentId);
         }
     }
 }

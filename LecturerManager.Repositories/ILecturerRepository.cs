@@ -7,9 +7,9 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Repositories
 {
     public interface ILecturerRepository
     {
-        IEnumerable<LecturerDBModel> GetLecturersByDepartment(Guid departmentId);
+        Task<IEnumerable<LecturerDBModel>> GetLecturersByDepartmentAsync(Guid departmentId);
 
-        LecturerDBModel GetLecturer(Guid lecturerId);
-        int GetLecturersCountByDepartment(Guid departmentId);
+        Task<LecturerDBModel> GetLecturerAsync(Guid lecturerId);
+        Task<int> GetLecturersCountByDepartmentAsync(Guid departmentId);
     }
 }

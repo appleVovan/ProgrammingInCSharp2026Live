@@ -6,7 +6,7 @@
              xmlns:vm="clr-namespace:KMA.ProgrammingInCSharp2026.LecturerManager.ViewModels"
              x:Class="KMA.ProgrammingInCSharp2026.LecturerManager.Pages.DepartmentDetailsPage"
              x:DataType="vm:DepartmentDetailsViewModel"
-             Title="Department Details">
+             Title="Department Details" IsEnabled="{Binding IsNotBusy}">
     <Grid RowDefinitions="Auto, *">
         <Border
             Stroke="Blue"
@@ -58,5 +58,18 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <BoxView
+            IsVisible="{Binding IsBusy}"
+            BackgroundColor="Gray"
+            Opacity="0.2"
+            InputTransparent="False"
+            Grid.RowSpan="2"/>
+        <ActivityIndicator
+            Color="Magenta"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Grid.RowSpan="2"/>
     </Grid>
 </ContentPage>

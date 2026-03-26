@@ -1,4 +1,6 @@
-﻿using KMA.ProgrammingInChsarp2026.LecturerManager.DTOModels.Departments;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using KMA.ProgrammingInChsarp2026.LecturerManager.DTOModels.Departments;
 using KMA.ProgrammingInCSharp2026.LecturerManager.Pages;
 using KMA.ProgrammingInCSharp2026.LecturerManager.Services;
 using System;
@@ -8,25 +10,37 @@ using System.Text;
 
 namespace KMA.ProgrammingInCSharp2026.LecturerManager.ViewModels
 {
-    public class DepartmentsViewModel
+    public partial class DepartmentsViewModel : BaseViewModel
     {
         private readonly IDepartmentService _departmentService;
-        public ObservableCollection<DepartmentListDTO> Departments { get; set; }
-        public DepartmentListDTO SelectedDepartment { get; set; }
-        public Command DepartmentSelectedCommand { get; }
+        [ObservableProperty]
+        public ObservableCollection<DepartmentListDTO> _departments;
+        [ObservableProperty]
+        public DepartmentListDTO _selectedDepartment;
         public DepartmentsViewModel(IDepartmentService departmentService)
         {
             _departmentService = departmentService;
-
-            Departments = new ObservableCollection<DepartmentListDTO>(_departmentService.GetAllDepartments());
-            DepartmentSelectedCommand = new Command(LoadDepartment);
         }
 
-        private void LoadDepartment()
+        internal async Task RefreshData()
         {
+            IsBusy = true;
+            Departments = new ObservableCollection<DepartmentListDTO>();
+            await foreach (var department in _departmentService.GetAllDepartmentsAsync())
+            {
+                Departments.Add(department);
+            }
+            IsBusy = false;
+        }
+
+        [RelayCommand]
+        private async Task LoadDepartment()
+        {
+            IsBusy = true;
             if (SelectedDepartment == null)
                 return;
-            Shell.Current.GoToAsync($"{nameof(DepartmentDetailsPage)}", new Dictionary<string, object> { { "DepartmentId", SelectedDepartment.Id } });
+            await Shell.Current.GoToAsync($"{nameof(DepartmentDetailsPage)}", new Dictionary<string, object> { { "DepartmentId", SelectedDepartment.Id } });
+            IsBusy = false;
         }
     }
 }

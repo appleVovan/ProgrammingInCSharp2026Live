@@ -7,7 +7,7 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Repositories
 {
     public interface IDepartmentRepository
     {
-        IEnumerable<DepartmentDBModel> GetDepartments();
-        DepartmentDBModel GetDepartment(Guid departmentId);
+        IAsyncEnumerable<DepartmentDBModel> GetDepartmentsAsync();
+        Task<DepartmentDBModel> GetDepartmentAsync(Guid departmentId);
     }
 }
