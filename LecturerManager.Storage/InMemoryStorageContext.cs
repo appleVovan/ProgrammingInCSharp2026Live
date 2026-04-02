@@ -87,5 +87,15 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Storage
                 return _lecturers.Count(lecturer => lecturer.DepartmentId == departmentId);
             });
         }
+
+        public Task SaveLecturerAsync(LecturerDBModel lecturer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteLecturerAsync(Guid lecturerId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

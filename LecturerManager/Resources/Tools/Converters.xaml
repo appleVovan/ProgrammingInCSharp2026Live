@@ -4,4 +4,5 @@
              xmlns:tools="clr-namespace:KMA.ProgrammingInCSharp2026.LecturerManager.Tools"
              x:Class="KMA.ProgrammingInCSharp2026.LecturerManager.Resources.Tools.Converters">
     <tools:EnumToDisplayNameConverter x:Key="EnumToDisplayName"></tools:EnumToDisplayNameConverter>
+    <tools:StringToBoolConverter x:Key="StringToBoolConverter" />
 </ResourceDictionary>

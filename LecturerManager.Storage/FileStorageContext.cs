@@ -124,5 +124,29 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Storage
                 return 0;
             return Directory.GetFiles(departmentDirectory).Length;
         }
+
+        public async Task SaveLecturerAsync(LecturerDBModel lecturer)
+        {
+            await Init();
+            var departmentDirectory = DepartmentDirectoryPath(lecturer.DepartmentId);
+            if (!Directory.Exists(departmentDirectory))
+                Directory.CreateDirectory(departmentDirectory);
+            var filePath = LecturerFilePath(departmentDirectory, lecturer.Id);
+            await File.WriteAllTextAsync(filePath, JsonSerializer.Serialize(lecturer));
+        }
+
+        public async Task DeleteLecturerAsync(Guid lecturerId)
+        {
+            await Init();
+            foreach (var directory in Directory.GetDirectories(DatabasePath))
+            {
+                var filePath = LecturerFilePath(directory, lecturerId);
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                    return;
+                }
+            }
+        }
     }
 }

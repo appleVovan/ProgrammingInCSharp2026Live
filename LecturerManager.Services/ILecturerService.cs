@@ -10,5 +10,7 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Services
         Task<IEnumerable<LecturerListDTO>> GetLecturersByDepartmentAsync(Guid departmentId);
 
         Task<LecturerDetailsDTO> GetLecturerAsync(Guid lecturerId);
+        Task CreateLecturerAsync(LecturerCreateDTO lecturerCreateDTO);
+        Task DeleteLecturerAsync(Guid lecturerId);
     }
 }

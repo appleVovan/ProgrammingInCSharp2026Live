@@ -36,14 +36,24 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.ViewModels
         internal async Task RefreshData()
         {
             IsBusy = true;
-            _currentLecturer = await _lecturerService.GetLecturerAsync(_lecturerId);
-            CalculateAge();
-            OnPropertyChanged(nameof(FirstName));
-            OnPropertyChanged(nameof(LastName));
-            OnPropertyChanged(nameof(Position));
-            OnPropertyChanged(nameof(DateOfBirth));
-            OnPropertyChanged(nameof(Age));
-            IsBusy = false;
+            try
+            {
+                _currentLecturer = await _lecturerService.GetLecturerAsync(_lecturerId) ?? throw new Exception("Lecturer does not exist.");
+                CalculateAge();
+                OnPropertyChanged(nameof(FirstName));
+                OnPropertyChanged(nameof(LastName));
+                OnPropertyChanged(nameof(Position));
+                OnPropertyChanged(nameof(DateOfBirth));
+                OnPropertyChanged(nameof(Age));
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlertAsync("Error", $"Failed to load lecturer details: {ex.Message}", "OK");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         private void CalculateAge()

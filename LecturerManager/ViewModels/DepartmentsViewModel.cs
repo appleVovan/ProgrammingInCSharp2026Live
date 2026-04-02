@@ -25,22 +25,42 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.ViewModels
         internal async Task RefreshData()
         {
             IsBusy = true;
-            Departments = new ObservableCollection<DepartmentListDTO>();
-            await foreach (var department in _departmentService.GetAllDepartmentsAsync())
+            try
             {
-                Departments.Add(department);
+                Departments = new ObservableCollection<DepartmentListDTO>();
+                await foreach (var department in _departmentService.GetAllDepartmentsAsync())
+                {
+                    Departments.Add(department);
+                }
             }
-            IsBusy = false;
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlertAsync("Error", $"Failed to load departments: {ex.Message}", "OK");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         [RelayCommand]
         private async Task LoadDepartment()
         {
             IsBusy = true;
-            if (SelectedDepartment == null)
-                return;
-            await Shell.Current.GoToAsync($"{nameof(DepartmentDetailsPage)}", new Dictionary<string, object> { { "DepartmentId", SelectedDepartment.Id } });
-            IsBusy = false;
+            try
+            {
+                if (SelectedDepartment == null)
+                    return;
+                await Shell.Current.GoToAsync($"{nameof(DepartmentDetailsPage)}", new Dictionary<string, object> { { "DepartmentId", SelectedDepartment.Id } });
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlertAsync("Error", $"Failed to navigate to department details: {ex.Message}", "OK");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

@@ -27,5 +27,15 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Repositories
         {
             return _storageContext.GetLecturersCountByDepartmentAsync(departmentId);
         }
+
+        public Task SaveLecturerAsync(LecturerDBModel lecturer)
+        {
+            return _storageContext.SaveLecturerAsync(lecturer);
+        }
+
+        public Task DeleteLecturerAsync(Guid lecturerId)
+        {
+            return _storageContext.DeleteLecturerAsync(lecturerId);
+        }
     }
 }

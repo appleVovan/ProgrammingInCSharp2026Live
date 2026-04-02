@@ -1,46 +1,78 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:KMA.ProgrammingInCSharp2026.LecturerManager.Pages"
+             xmlns:vms="clr-namespace:KMA.ProgrammingInCSharp2026.LecturerManager.ViewModels"
              x:Class="KMA.ProgrammingInCSharp2026.LecturerManager.Pages.LecturerCreatePage"
-             Title="Create new Lecturer">
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="10,20"
-            Spacing="10">
-            <Label
-                Text="FirstName"></Label>
-            <Entry
-                x:Name="eFistName"
-                Placeholder="First Name"></Entry>
-            <Label
-                Text="LastName"></Label>
-            <Entry
-                x:Name="eLastName"
-                Placeholder="Last Name"></Entry>
-            <Label
-                Text="Postion"></Label>
-            <Picker
-                x:Name="pPosition"
-                Title="Select Lecturer's postion"
-                ItemDisplayBinding="{Binding DisplayName}"></Picker>
-            <Label
-                Text="Date of Birth"></Label>
-            <DatePicker
-                x:Name="dpDoB"
-                Date="{x:Null}"></DatePicker>
-            <Grid
-                ColumnDefinitions="*,*"
-                ColumnSpacing="10"
-                Padding="10">
-                <Button
-                    Grid.Column="0"
-                    Text="Create Lecturer"
-                    Clicked="CreateClicked"></Button>
-                <Button
-                    Grid.Column="1"
-                    Text="Back"
-                    Clicked="BackClicked"></Button>
-            </Grid>
-        </VerticalStackLayout>
-    </ScrollView>
+             x:DataType="vms:LecturerCreateViewModel"
+             Title="Lecturer Create Page" IsEnabled="{Binding IsNotBusy}">
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout
+                Padding="10,20"
+                Spacing="10">
+                <Label
+                    Text="FirstName"></Label>
+                <Entry
+                    Placeholder="First Name"
+                    Text="{Binding FirstName}"></Entry>
+                <Label
+                    Text="{Binding Errors[FirstName]}"
+                    TextColor="Red"
+                    IsVisible="{Binding Errors[FirstName], Converter={StaticResource StringToBoolConverter}}"></Label>
+                <Label
+                    Text="LastName"></Label>
+                <Entry
+                    Placeholder="Last Name"
+                    Text="{Binding LastName}"></Entry>
+                <Label
+                    Text="{Binding Errors[LastName]}"
+                    TextColor="Red"
+                    IsVisible="{Binding Errors[LastName], Converter={StaticResource StringToBoolConverter}}"></Label>
+                <Label
+                    Text="Postion"></Label>
+                <Picker
+                    Title="Select Lecturer's postion"
+                    ItemDisplayBinding="{Binding DisplayName}"
+                    ItemsSource="{Binding Positions}"
+                    SelectedItem="{Binding Position}"></Picker>
+                <Label
+                    Text="{Binding Errors[Position]}"
+                    TextColor="Red"
+                    IsVisible="{Binding Errors[Position], Converter={StaticResource StringToBoolConverter}}"></Label>
+                <Label
+                    Text="Date of Birth"></Label>
+                <DatePicker
+                    Date="{Binding DateOfBirth}"></DatePicker>
+                <Label
+                    Text="{Binding Errors[DateOfBirth]}"
+                    TextColor="Red"
+                    IsVisible="{Binding Errors[DateOfBirth], Converter={StaticResource StringToBoolConverter}}"></Label>
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Padding="10">
+                    <Button
+                        Grid.Column="0"
+                        Text="Create Lecturer"
+                        Command="{Binding CreateLecturerCommand}"></Button>
+                    <Button
+                        Grid.Column="1"
+                        Text="Back"
+                        Command="{Binding BackCommand}"></Button>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+        <BoxView
+            IsVisible="{Binding IsBusy}"
+            BackgroundColor="Gray"
+            Opacity="0.2"
+            InputTransparent="False"/>
+        <ActivityIndicator
+            Color="Magenta"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"/>
+    </Grid>
 </ContentPage>

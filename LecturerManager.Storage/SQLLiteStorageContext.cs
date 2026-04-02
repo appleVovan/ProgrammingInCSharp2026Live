@@ -89,5 +89,15 @@ namespace KMA.ProgrammingInCSharp2026.LecturerManager.Storage
             await Init();
             return await _databaseConnection.Table<LecturerDBModel>().CountAsync(l => l.DepartmentId == departmentId);
         }
+
+        public Task SaveLecturerAsync(LecturerDBModel lecturer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteLecturerAsync(Guid lecturerId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
